@@ -4,6 +4,28 @@ let bg;
 let pieceImg;
 let pieces = [];
 let piecesRecuperees = 0;
+
+
+
+function loadPlayerAnimations() {
+    const idle = loadAni('./img/joueur_stop.png')
+    idle.scale = 2
+
+    const walk = loadAni('./img/joueur_.png', './img/joueur_walk.png')
+    walk.scale = 0.5
+    walk.frameDelay = 15
+
+    const jump = loadAni('images/bunny1_jump.png')
+    jump.scale = 0.5
+
+    joueur.addAni('idle', idle)
+    joueur.addAni('walk', walk)
+    joueur.addAni('jump', jump)
+
+    joueur.changeAni('idle')
+}
+
+
 function resetSaut() {
     sol = true;
 }
@@ -12,17 +34,53 @@ function preload() {
     bg = loadImage('./img/background.png');
     pieceImg = loadImage('./img/piece.png');
 
+}
+
+function setup() {
+    new Canvas(1400, 788);
+    world.gravity.y = 12;
+
     joueur = new Sprite(50, 100, 34.5, 50);
     joueur.image = './img/joueur.png';
     joueur.rotationLock = true;
     joueur.friction = 0;
     joueur.image.scale = 2;
     joueur.debug = true;
-}
+    loadPlayerAnimations()
 
-function setup() {
-    new Canvas(1400, 788);
-    world.gravity.y = 12;
+    const mechant1 = new Sprite(700, 120, 35, 20);
+    const mechant2 = new Sprite(700, 100, 35, 20);
+    const mechant3 = new Sprite(600, 600, 35, 45);
+    const mechant4 = new Sprite(1340, 700, 35, 45);
+
+    mechant1.image = './img/rat1.png';
+    mechant1.rotationLock = true;
+    mechant1.friction = 0;
+    mechant1.image.scale = 2;
+    mechant1.image.offset.y = -5
+    mechant1.debug = true;
+
+    mechant2.image = './img/rat1.png';
+    mechant2.rotationLock = true;
+    mechant2.friction = 0;
+    mechant2.image.scale = 2;
+    mechant1.image.offset.y = -5
+    mechant2.debug = true;
+
+    mechant3.image = './img/phantom.png';
+    mechant3.rotationLock = true;
+    mechant3.friction = 0;
+    mechant3.image.scale = 2;
+    mechant1.image.offset.y = -5
+    mechant3.debug = true;
+
+    mechant4.image = './img/phantom.png';
+    mechant4.rotationLock = true;
+    mechant4.friction = 0;
+    mechant4.image.scale = 2;
+    mechant1.image.offset.y = -5
+    mechant4.debug = true;
+
 
     const bordure_gauche = new Sprite();
     bordure_gauche.width = 1;
@@ -38,6 +96,13 @@ function setup() {
     bordure_droite.y = 0;
     bordure_droite.collider = 'static';
 
+    const bordure_bas = new Sprite();
+    bordure_bas.width = 1000;
+    bordure_bas.height = 1;
+    bordure_bas.x = 0;
+    bordure_bas.y = 800;
+    bordure_bas.collider = 'static';
+
     const terre_gauche = new Sprite([[0, 257], [0, 521], [66, 521], [66, 455], [132, 455], [132, 389], [198, 389], [198, 191], [132, 191], [66, 257], [0, 257]]);
     terre_gauche.collider = 'static';
     terre_gauche.image = './img/terre_gauche.png';
@@ -47,13 +112,15 @@ function setup() {
     terre_millieu.collider = 'static';
     terre_millieu.image = './img/terre_millieu.png';
     terre_millieu.image.scale = 0.42;
-    terre_millieu.debug = true;
+    terre_millieu.image.offset.x = -58
+    terre_millieu.image.offset.y = 80
 
-    const tunnel = new Sprite([[1400, 323], [1334, 323], [1268, 389], [1070, 389], [1004, 455], [542, 455], [542, 521], [1070, 521], [1070, 455], [1400, 455], [1400, 323]]);
-    tunnel.collider = 'static';
-    tunnel.image = './img/tutu.png';
-    tunnel.image.scale = 0.55;
-    tunnel.debug = true;
+    const tutu = new Sprite([[1400, 323], [1334, 323], [1268, 389], [1070, 389], [1004, 455], [542, 455], [542, 521], [1070, 521], [1070, 455], [1400, 455], [1400, 323]]);
+    tutu.collider = 'static';
+    tutu.image = './img/tutu.png';
+    tutu.image.scale = 0.54;
+    tutu.image.offset.x = -182
+    tutu.image.offset.y = -10
 
     const cave_gauche = new Sprite([[0, 656], [0, 788], [66, 788], [66, 656], [0, 656]]);
     cave_gauche.collider = 'static';
@@ -64,7 +131,8 @@ function setup() {
     cave_droite.collider = 'static';
     cave_droite.image = './img/cave_droite.png';
     cave_droite.image.scale = 0.35;
-    cave_droite.debug = true;
+    cave_droite.image.offset.x = 85
+    cave_droite.image.offset.y = -30
 
     const cave_millieu = new Sprite();
     cave_millieu.width = 462;
@@ -139,7 +207,7 @@ function setup() {
 
     joueur.collides(terre_gauche, resetSaut);
     joueur.collides(terre_millieu, resetSaut);
-    joueur.collides(tunnel, resetSaut);
+    joueur.collides(tutu, resetSaut);
     joueur.collides(cave_gauche, resetSaut);
     joueur.collides(cave_droite, resetSaut);
     joueur.collides(cave_millieu, resetSaut);

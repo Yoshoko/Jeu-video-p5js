@@ -1,10 +1,9 @@
 
-
-
 function controle() {
     if (kb.pressing('left')) {
         joueur.vel.x = -3;
         joueur.mirror.x = true;
+
     } else if (kb.pressing('right')) {
         joueur.vel.x = 3;
         joueur.mirror.x = false;
@@ -13,7 +12,7 @@ function controle() {
     }
 
     if (kb.presses('spacebar') && sol) {
-        joueur.velocity.y = -3;
+        joueur.velocity.y = -4;
         sol = false;
     }
 }
