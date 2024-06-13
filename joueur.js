@@ -16,7 +16,7 @@ function controle() {
     }
 
     if (kb.presses('spacebar') && sol) {
-        joueur.velocity.y = -4.5;
+        joueur.velocity.y = -4;
         sol = false;
         joueur.changeAni('jump')
     }

@@ -52,7 +52,7 @@ function preload() {
 
 function setup() {
     new Canvas(1400, 788);
-    world.gravity.y = 8;
+    world.gravity.y = 11;
 
 
 
