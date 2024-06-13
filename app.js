@@ -65,7 +65,6 @@ function setup() {
     elevator.collider = 'k';
     elevator.image = './img/elevator.png'
     elevator.scale = 4
-    elevator.debug = true
 
 
 
@@ -325,6 +324,8 @@ function setup() {
     joueur.collides(bloc_cave3, resetSaut);
     joueur.collides(balancoire, resetSaut);
     joueur.collides(bloc_piece, resetSaut);
+    joueur.collides(elevator, resetSaut);
+
 
     PasGentil()
 
@@ -345,6 +346,7 @@ function draw() {
         mechant3.speed = 0
         mechant4.speed = 0
         joueur.speed = 0
+        elevator.speed = 0
 
 
 
