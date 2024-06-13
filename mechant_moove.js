@@ -20,7 +20,7 @@ function mechantDeplacement() {
         mechant2.direction = 180;
         mechant2.mirror.x = false;
     }
-    if (mechant3.x < 170) {
+    if (mechant3.x < 320) {
         mechant3.direction = 0;
         mechant3.mirror.x = true;
     } else if (mechant3.x > 600) {

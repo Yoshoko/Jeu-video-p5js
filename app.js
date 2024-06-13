@@ -56,6 +56,19 @@ function setup() {
 
 
 
+    elevator = new Sprite();
+    elevator.x = 254;
+    elevator.y = 650;
+    elevator.w = 10;
+    elevator.h = 2;
+    elevator.speed = 2;
+    elevator.collider = 'k';
+    elevator.image = './img/elevator.png'
+    elevator.scale = 4
+    elevator.debug = true
+
+
+
     const bordure_droite = new Sprite();
     bordure_droite.width = 1;
     bordure_droite.height = 3000;
@@ -348,6 +361,11 @@ function draw() {
     controle();
     checkCollisions();
 
+    if (elevator.y < 100) {
+        elevator.direction = 90;
+    } else if (elevator.y > 645) {
+        elevator.direction = 270;
+    }
 
 }
 
