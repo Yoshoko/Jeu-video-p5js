@@ -55,31 +55,6 @@ function setup() {
     world.gravity.y = 8;
 
 
-    const porte = new Sprite();
-    const porte2 = new Sprite();
-
-
-    porte.width = 33;
-    porte.height = 45;
-    porte.x = 300;
-    porte.y = 632;
-    porte.collider = 'none';
-    porte.image = './img/porte.png';
-    porte.image.scale = 0.15;
-
-    porte2.width = 33;
-    porte2.height = 45;
-    porte2.x = 570;
-    porte2.y = 232;
-    porte2.collider = 'none';
-    porte2.image = './img/porte.png';
-    porte2.image.scale = 0.15;
-    const bordure_gauche = new Sprite();
-    bordure_gauche.width = 1;
-    bordure_gauche.height = 3000;
-    bordure_gauche.x = 0;
-    bordure_gauche.y = 0;
-    bordure_gauche.collider = 'static';
 
     const bordure_droite = new Sprite();
     bordure_droite.width = 1;
@@ -345,11 +320,14 @@ function setup() {
 }
 
 function draw() {
-
+    if (mouse.presses()) {
+        backSound.play();
+    }
 
     if (isGameOver) {
 
         mechant1.speed = 0
+        mechant1bis.speed = 0
         mechant2.speed = 0
         mechant3.speed = 0
         mechant4.speed = 0
@@ -375,10 +353,11 @@ function draw() {
 
 
 function checkCollisions() {
-    if (joueur.overlaps(mechant1) || joueur.overlaps(mechant2) || joueur.overlaps(mechant3) || joueur.overlaps(mechant4)) {
+    if (joueur.overlaps(mechant1) || joueur.overlaps(mechant1bis) || joueur.overlaps(mechant2) || joueur.overlaps(mechant3) || joueur.overlaps(mechant4)) {
         joueur.remove();
         messageDefaite.visible = true;
         isGameOver = true;
+        backSound.stop();
         lSound.play();
 
 

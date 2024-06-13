@@ -1,5 +1,7 @@
 function PasGentil() {
     mechant1 = new Sprite(850, 250, 35, 20);
+    mechant1bis = new Sprite(850, 250, 35, 20);
+
     mechant2 = new Sprite(1200, 176, 34, 25);
     mechant3 = new Sprite(600, 640, 30, 30);
     mechant4 = new Sprite(1340, 715, 30, 30);
@@ -37,5 +39,14 @@ function PasGentil() {
     mechant4.speed = 2;
     mechant4.direction = 0;
     mechant4.image.scale = 1.5;
+
+    mechant1bis.image = './img/rat1.png';
+    mechant1bis.rotationLock = true;
+    mechant1bis.friction = 0;
+    mechant1bis.image.scale = 2;
+    mechant1bis.speed = 2;
+    mechant1bis.direction = 0;
+    mechant1bis.image.offset.y = -7
+    mechant1bis.collider = "k";
 
 }
